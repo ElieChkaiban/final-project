@@ -1,0 +1,249 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Pet Finder</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c3d6c3;
+        }
+        header {
+            background-color: #c3d6c3;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+        .search-bar {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        
+        
+        .navbar{
+            background: #0a7029;
+            padding: 15px 15px;
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; padding-right: 15px; padding-left: 15px;
+        }
+        .navdiv{
+            display: flex; align-items: center; justify-content: space-between; 
+            
+        }
+        .logo a{
+            font-family: 'Arial Rounded MT Bold', Arial, sans-serif; font-size: 35px; font-weight: 600; line-height: 1; color: #fede00; text-decoration: none;
+        }
+        .navbar ul {
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: inline-block;
+        }
+        .navbar ul li {
+            margin-right: 25px;
+            display: inline-block;
+        }
+        .navbar ul li a {
+            color: white; 
+            font-size: 18px; 
+            font-weight: bold; 
+            line-height: 1;
+            text-decoration: none;
+        }
+        .navbar button {
+            background-color: #fede00;
+            color: #003092;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .navbar button a {
+            
+            text-decoration: none;
+        }
+        .navbar button:hover {
+            background-color: #ffeb3b; 
+        }
+
+        
+        .button{
+            background-color: #003092; margin-left: 10px; border-radius: 10px; padding: 10px; width: 90px;
+        }
+        .button a{
+            color: white; font-weight: bold; font-size: 15px;
+
+        }
+        
+
+        
+        .contact-box{
+            background: #c3d6c3;
+            display: flex;
+        }
+        .contact-left{
+            flex-basis: 60%;
+            padding: 40px 60px;
+            border-radius: 10px;
+        }
+        .contact-right{
+            flex-basis: 40%;
+            padding: 40px;
+            background: #0a7029;
+            color:white;
+        }
+        .contact-right a{
+            color: white;
+            
+        }
+        h1{
+            margin-bottom: 10px;
+        }
+        .container p{
+            margin-bottom: 40px;
+        }
+        .input-row{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .input-row .input-group{
+            flex-basis: 45%;
+        }
+        input{
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid black;
+            outline: none;
+            padding-bottom: 1px solid;
+        }
+        textarea{
+            width: 100%;
+            border: 1px solid balck;
+            outline: none;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        label{
+            margin-bottom: 6px;
+            display: block;
+            color: #0a7029;
+        }
+        button{
+            background: #fede00;
+            width: 100px;
+            border: none;
+            outline: none;
+            color:#0a7029;
+            height: 35px;
+            border-radius: 30px;
+            margin-top: 20px;
+            box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.2);
+        }
+        tr td:first-child{
+            padding-right: 20px;
+            color:white;
+        }
+        tr td{
+            padding-top: 20px;
+            color:white;
+        }
+        
+        </style>
+    </head>
+    <body>
+        
+        <nav class="navbar">
+            <div class="navdiv">
+                <div class="logo"><a href="#">The Pet Finder</a></div>
+                <ul>
+                    <li><a href="homepage.html" style="color:#fede00;">Home Page</a></li>
+                    <li><a href="about.html" style="color:#fede00;">About</a></li>
+                    <li><a href="contactus.html" style="color:#fede00;">Contact Us</a></li>
+                    <li><button><a href="signIn.html" style="color: #0a7029; text-decoration: none;">Sign In</a></button></li>
+                    <li><button><a href="signUp.html" style="color: #0a7029; text-decoration: none;">Sign Up</a></button></li>
+
+                
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+        <h1>Connect With Us</h1>
+        <p>We would love to respond to your queries and help you.<br>Feel free to get in touch with us.</p>
+        <div class="contact-box">                    
+            <div class="contact-left">                                        
+                <h3>Send your feedback</h3>                                   
+                <form action="https://formspree.io/f/xdkezveo" method="POST" id="feedback-form">             
+                    <div class="input-row">                                  
+                        <div class="input-group">                                             
+                            <label>First Name</label>                                
+                            <input type="text" name="FirstName" placeholder="Karim" id="First_Name">
+                        </div>                     
+                        <div class="input-group">                                              
+                            <label>Last Name</label>                                        
+                            <input type="text" name="LastName" placeholder="El Hajj" id="Last_Name">
+                        </div>                                      
+                    </div>                               
+                    <div class="input-row">          
+                        <div class="input-group">                              
+                            <label>Phone</label>                                              
+                            <input type="text" name="Phonenumber" placeholder="+961 71 123 456" id="Phone">
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email"  name="email"placeholder="karim.elhajj@example.com" id="Email">
+                        </div>
+                    </div>                                            
+                    <label>Message</label>                                           
+                    <textarea rows="5"  name="message" placeholder="Your Message" id="text-message"></textarea>
+                    <button type="submit">Send</button>
+                </form>                                          
+            </div>                                     
+
+            <div class="contact-right">                                             
+                <h3>Reach Us</h3>                                    
+                 <table>
+                    <tr>
+                        <td>Email</td>                          
+                        <td><a href="mailto:thepetfinderr@gmail.com">thepetfinderr@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>+961 81 753140</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>AOU, ANTELIAS, MOUNT LEBANON, LEBANON</td>
+                    </tr>
+                 </table>
+            </div>
+
+        </div>
+         </div>
+         
+         
+    </body>
+</html>
+       

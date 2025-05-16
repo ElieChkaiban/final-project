@@ -1,0 +1,19 @@
+{
+  "name": "pet-finder",
+  "version": "1.0.0",
+  "description": "A pet management application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.13.23",
+    "multer": "^1.4.4"
+  }
+}

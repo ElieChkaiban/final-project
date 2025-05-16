@@ -1,0 +1,179 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password - The Pet Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c3d6c3;
+        }
+        header {
+            background-color: #c3d6c3;
+            padding: 20px;
+            text-align: center;
+        }
+        .container-change-pas {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;            ;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #0a7029;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+            text-align: center;
+        }
+        .navbar {
+            background: #0a7029;
+            padding: 20px;
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; 
+            padding-right: 15px; 
+            padding-left: 15px;
+        }
+        .navdiv {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+        }
+        .logo a {
+            font-size: 35px; 
+            font-weight: 600; 
+            color: #fede00; 
+            text-decoration: none;
+            font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+        }
+        .navbar ul {
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: inline-block;
+        }
+        .navbar ul li {
+            margin-right: 25px;
+            display: inline-block;
+        }
+        .navbar ul li a {
+            color: #c3d6c3; 
+            font-size: 18px; 
+            font-weight: bold; 
+            text-decoration: none;
+        }
+        .navbar button {
+            background-color: #fede00;
+            color: #003b73;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .navbar button:hover {
+            background-color: #ffeb3b; 
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0a7029;
+            color: #fede00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+       
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a href="#">The Pet Finder</a></div>
+            <ul>
+                <li><a href="user_interface.html" style="color:#fede00;">Home Page</a></li>
+                <li><a href="about.html" style="color:#fede00;">About</a></li>
+                <li><a href="contactus.html" style="color:#fede00;">Contact Us</a></li>
+              
+              
+            </ul>
+        </div>
+    </nav>
+    <header>
+        <h1>Change Password</h1>
+    </header>
+
+    <div class="container-change-pas">
+        <p>Please enter your new password.</p>
+<form  id="changepass" method="post" action="http://localhost:3000/change">
+
+
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="OldPassword" required>
+                
+            </div>
+            <div class="form-group">
+                <input type="password" name="newpassword" placeholder="NewPassword" required>
+                   
+            </div>
+            <div class="form-group">
+                <button type="submit">Change</button>
+            </div>
+        </form>
+ 
+    </div>
+    <script>    
+    //change password                                                                     
+        document.getElementById('changepass').addEventListener('submit', async function(event) {
+            event.preventDefault();                                      
+            
+            const formData = {                                                  
+                email: this.email.value,                                                 
+                password: this.password.value,                                              
+                newpassword: this.newpassword.value                                         
+            };                                                          
+
+            const response = await fetch(this.action, {                                           
+                method: 'POST',                                          
+                headers: {                                                                
+                    'Content-Type': 'application/json'                                             
+                },
+                body: JSON.stringify(formData)                                                 
+            });
+            //result check                                                               
+                                                                            
+            const result = await response.json();
+            if (response.ok) {                                                  
+                alert(result.message); 
+                                                                         
+            } else {
+                alert(result.error);                                              
+            }
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,155 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Pet Finder</title>
+        <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c3d6c3;
+        }
+        header {
+            background-color: #c3d6c3;
+            padding: 20px;
+            text-align: center;
+            font-family: Helvetica;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            color: #0a7029;
+        }
+        .navbar {
+            background: #0a7029;
+            padding: 20px;
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .navdiv {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+        }
+        .logo a {
+            font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; 
+            font-size: 35px; 
+            font-weight: 600; 
+            color: #fede00; 
+            text-decoration: none;
+        }
+        .navbar ul {
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: inline-block;
+        }
+        .navbar ul li {
+            margin-right: 25px;
+            display: inline-block;
+        }
+        .navbar ul li a {
+            color: white; 
+            font-size: 18px; 
+            font-weight: bold; 
+            text-decoration: none;
+        }
+        .navbar button {
+            background-color: #fede00;
+            color: #003092;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .navbar button a {
+            color: #0a7029;
+            text-decoration: none;
+        }
+        .navbar button:hover {
+            background-color: #ffeb3b; 
+        }
+        table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        th {
+            background-color: #f2f2f2; 
+        }
+        
+        </style>
+    </head>
+    <body>
+        
+        <nav class="navbar">
+            <div class="navdiv">
+                <div class="logo"><a href="#">The Pet Finder</a></div>
+                <ul>
+                    <li><button><a href="admin_interface.html" style="color: #0a7029; text-decoration: none;">Back</a></button></li>
+               
+
+                
+                </ul>
+            </div>
+        </nav>
+        <header><h1>Members Email</h1></header>
+        <div class="container">
+            
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Member Name</th>
+                        <th>Member Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userstable">
+                        
+                    </tbody>
+                </table>
+            
+        </div>
+        <script>
+            async function getMembers() {
+                try{
+                    const response = await fetch('/users');
+                    if (!response.ok) {
+                        throw new Error('Network was not ok');
+                    }
+                    const users = await response.json();
+                    const userstable = document.querySelector('#userstable');
+
+                    userstable.innerHTML = '';
+                    users.forEach(user => {
+                        const row = userstable.insertRow();
+                        row.insertCell(0).innerText = user.name;
+                        const emailCell = row.insertCell(1);
+                        const emailLink = document.createElement('a');
+                        emailLink.href = `mailto:${user.email}`; 
+                        emailLink.innerText = user.email; 
+                        emailCell.appendChild(emailLink);
+                        
+                    });
+                }catch (error){
+                    console.error('Error fetching users:', error);
+                }
+            }
+            window.onload = getMembers();
+        </script>
+    </body>
+</html>
