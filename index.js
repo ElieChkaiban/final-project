@@ -205,7 +205,34 @@ app.post("/pet_in", upload.single('image'), async (req, res) => {
         console.error("Error inserting pet:", err);                                     
         return res.status(500).send("Failed to upload pet. Please try again later.");                         
     }                                                      
-});                                                      
+});   
+app.post("/pet_inad", upload.single('image'), async (req, res) => {                           
+    const { petname, pettype, contactnumber } = req.body;                                 
+    if (!req.file) {                                         
+        return res.status(400).send("No file uploaded.");                                 
+    }                                                              
+    const petphoto = `/upload/${req.file.filename}`;                                        
+                                                               
+                                               
+    const pstate = req.body['lost-found Pet'];                                                    
+//Pet Data                                                                      
+    const petdata = {                  
+        petname,                            
+        pettype,                       
+        petphoto,                          
+        contactnumber,                                                                       
+        pstate                                          
+    };                                 
+//inserting a new pet in the database                           
+    try {                                                  
+        await db.collection('Pets').insertOne(petdata);                     
+        console.log("Pet uploaded");                                    
+        return res.redirect('admin_interface.html');                             
+    } catch (err) {                                         
+        console.error("Error inserting pet:", err);                                     
+        return res.status(500).send("Failed to upload pet. Please try again later.");                         
+    }                                                      
+});                                                                                       
 //get pets from database                                             
 app.get("/pets", async (req, res) => {                            
     try {                                   
