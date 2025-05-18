@@ -32,7 +32,7 @@ app.use(session({
                                        
 const db = mongoose.connection;                                         
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log("Connected to Database"));
+db.once('open', () => console.log("Connected to Database established"));
 
 //multer for file upload                       
 const storage = multer.diskStorage({                     
@@ -121,7 +121,7 @@ app.post("/change", async (req, res) => {
                                                                
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            return res.status(400).json({ error: "Old password is incorrect" });
+            return res.status(400).json({ error: "Enter a valid old password" });
         }
                                                             
         const hashedNewPassword = await bcrypt.hash(newpassword, 10);
@@ -131,7 +131,7 @@ app.post("/change", async (req, res) => {
             { $set: { password: hashedNewPassword } }
         );
 
-        return res.status(200).json({ message: "Password changed successfully" });
+        return res.status(200).json({ message: "Password successfully changed" });
     } catch (error) {
         //Error in password changing
         console.error("Error changing password:", error);
@@ -152,8 +152,8 @@ app.get("/user_interface", async (req, res) => {
         //Display pet info 
         res.render('user_interface', { pets }); 
     } catch (err) {
-        console.error("Error fetching pets:", err);
-        res.status(500).send("Error fetching pets");
+        console.error("Error fetching pets form database:", err);
+        res.status(500).send("Error fetching pets form database");
     }
 });
 //Access files in upload folder
@@ -203,7 +203,7 @@ app.post("/pet_in", upload.single('image'), async (req, res) => {
         return res.redirect('user_interface.html');                             
     } catch (err) {                                         
         console.error("Error inserting pet:", err);                                     
-        return res.status(500).send("Failed to upload pet. Please try again later.");                         
+        return res.status(500).send("Failed to upload pet. Please try again.");                         
     }                                                      
 });   
 app.post("/pet_inad", upload.single('image'), async (req, res) => {                           
@@ -230,7 +230,7 @@ app.post("/pet_inad", upload.single('image'), async (req, res) => {
         return res.redirect('admin_interface.html');                             
     } catch (err) {                                         
         console.error("Error inserting pet:", err);                                     
-        return res.status(500).send("Failed to upload pet. Please try again later.");                         
+        return res.status(500).send("Failed to upload pet. Please try again.");                         
     }                                                      
 });                                                                                       
 //get pets from database                                             
@@ -244,8 +244,8 @@ app.get("/pets", async (req, res) => {
         }));
         res.json(formattedPets);
     } catch (err) {
-        console.error("Error fetching pets:", err);
-        res.status(500).send("Error fetching pets");
+        console.error("Error getting pets from database", err);
+        res.status(500).send("Error getting pets from database");
     }                                         
 
 });
@@ -282,8 +282,8 @@ app.get("/contactmeb", async (req, res) => {
         const pets = await db.collection('users').find().toArray();
         res.render('contactmeb', { users }); 
     } catch (err) {
-        console.error("Error fetching users:", err);
-        res.status(500).send("Error fetching users");
+        console.error("Error getting users info:", err);
+        res.status(500).send("Error getting users info");
     }
 });
 //get users from database                                                  
